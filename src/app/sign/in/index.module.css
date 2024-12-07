@@ -1,0 +1,75 @@
+.root {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  .h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .p {
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #333;
+  }
+  
+  .inputBox {
+    margin-bottom: 20px;
+  }
+  
+  .inputBox input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .inputBox input:focus {
+    outline: none;
+    border-color: #6b6b6b;
+  }
+  
+  .buttonBox {
+    margin-top: 30px;
+  }
+  
+  .buttonBox button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6b6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .buttonBox button:hover {
+    background-color: #555;
+  }
+  
+  .navi {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  
+  .navi a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .navi a:hover {
+    text-decoration: underline;
+  }

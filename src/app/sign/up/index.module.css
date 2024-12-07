@@ -1,0 +1,80 @@
+.root {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  .h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .p {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .inputBox {
+    margin-bottom: 20px;
+  }
+  
+  .inputBox2 {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .inputBox input,
+  .inputBox2 input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .idBtn {
+    position: absolute;
+    right: 0;
+    top: 32px;
+    padding: 8px 15px;
+    background-color: #6b6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .buttonBox {
+    margin-top: 30px;
+  }
+  
+  .buttonBox button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6b6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Add hover effects */
+  .buttonBox button:hover,
+  .idBtn:hover {
+    background-color: #555;
+  }
+  
+  /* Add focus styles for inputs */
+  .inputBox input:focus,
+  .inputBox2 input:focus {
+    outline: none;
+    border-color: #6b6b6b;
+  }

@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// 가장 기본이 되는 DB의 뼈대를 만드는 파일
+
+// 클라이언트 쪽에서 Prisma DB를 연결하려면 prisma-client가 필요
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 어떤 종류의 DB를 쓰는지, 해당 파일에 대한 url
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// 테이블 === model
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String
+  posts    Post[]
+}
+
+// 간단한 게시물 작성할 때 사용
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
