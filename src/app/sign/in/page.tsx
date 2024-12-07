@@ -1,15 +1,14 @@
 "use client";
-
 import Link from "next/link";
 import * as styles from "./index.module.css";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, Suspense } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 
-
-const SignInPage = () => {
+// SignInForm 컴포넌트로 분리
+function SignInForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [id, setId] = useState("");
@@ -17,12 +16,11 @@ const SignInPage = () => {
   const [blankId, setBlankId] = useState(false);
   const [blankPw, setBlankPw] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
   const { data: session } = useSession();
 
   useEffect(() => {
     if (session) {
-      router.push("/afterLogin");  // 로그인 후 리다이렉트할 경로
+      router.push("/afterLogin");
     }
   }, [session, router]);
 
@@ -49,7 +47,6 @@ const SignInPage = () => {
       setBlankPw(true);
       return;
     }
-
     if (!blankId && !blankPw) {
       try {
         const result = await signIn("credentials", {
@@ -57,12 +54,11 @@ const SignInPage = () => {
           password: password,
           redirect: false,
         });
-
-        if (result?.ok) {  // 로그인 성공
+        if (result?.ok) {
           alert("로그인이 완료되었습니다.");
           const callbackUrl = searchParams.get("callbackUrl") || "/";
           router.push(callbackUrl);
-        } else {  // 로그인 실패
+        } else {
           setError("아이디 또는 비밀번호가 올바르지 않습니다.");
         }
       } catch (error) {
@@ -82,7 +78,6 @@ const SignInPage = () => {
           </div>
         )}
         
-        {/* 아이디 */}
         <div className={styles.inputBox}>
           <p className={styles.p}>ID</p>
           <input
@@ -94,8 +89,6 @@ const SignInPage = () => {
           />
           {blankId && <span className={styles.errorText}>아이디를 입력해주세요</span>}
         </div>
-
-        {/* 비밀번호 */}
         <div className={styles.inputBox}>
           <p className={styles.p}>PASSWORD</p>
           <input
@@ -107,8 +100,6 @@ const SignInPage = () => {
           />
           {blankPw && <span className={styles.errorText}>비밀번호를 입력해주세요</span>}
         </div>
-
-        {/* 로그인 버튼 */}
         <div className={styles.buttonBox}>
           <button type="submit">로그인</button>
           <div className={styles.navi}>
@@ -118,6 +109,15 @@ const SignInPage = () => {
         </div>
       </form>
     </div>
+  );
+}
+
+// 메인 SignInPage 컴포넌트
+const SignInPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignInForm />
+    </Suspense>
   );
 };
 
